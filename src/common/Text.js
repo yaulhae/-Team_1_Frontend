@@ -7,6 +7,12 @@ const TextBlock = styled.p`
   color: ${(props) => (props.color ? props.color : "")};
   margin: ${(props) => (props.margin ? props.margin : "")};
   text-align: ${(props) => (props.text_align ? props.text_align : "")};
+  width: 100%;
+  line-height: 110%;
+  .user_name {
+    font-size: 1.7rem;
+    font-weight: 600;
+  }
 `;
 
 const Text = (props) => {

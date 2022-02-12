@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Grid, Input, Text } from "../common";
 import Template from "../common/Template";
 
+
 const SignUpPageBlock = styled.div``;
 
 const SignUpPage = () => {
@@ -71,6 +72,7 @@ const SignUpPage = () => {
         <Button bg="black" width="100%" border_radius="24px" font_weight="500">
           회원가입
         </Button>
+
       </SignUpPageBlock>
     </Template>
   );

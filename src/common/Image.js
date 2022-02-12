@@ -13,15 +13,17 @@ const CircleImage = styled.div`
 
 const AspectOutter = styled.div`
   width: ${(props) => (props.rectangle_size ? props.rectangle_size : "")};
-  min-width: 250px;
+  min-width: 100px;
+  cursor: pointer;
 `;
 
 const AspectInner = styled.div`
   position: relative;
-  padding-top: 75%;
+  padding-top: 125%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  border-radius: 12px;
 `;
 
 const ImageDefault = styled.div`

@@ -45,7 +45,7 @@ const LoginPage = () => {
           </Grid>
         </Grid>
         <Button bg="black" width="100%" border_radius="24px" font_weight="500">
-          로그인 하기
+          로그인
         </Button>
       </LoginPageBlock>
     </Template>

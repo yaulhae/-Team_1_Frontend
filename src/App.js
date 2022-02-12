@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Button, Grid, Image, Input, Text } from "./common";
+import InspireItemPage from "./pages/InspireItemPage";
+import InspireListPage from "./pages/InspireListPage";
+import InspireWritePage from "./pages/InspireWritePage";
+import LoginPage from "./pages/LoginPage";
+import MemoListPage from "./pages/MemoListPage";
+import MemoWritePage from "./pages/MemoWritePage";
+import SignUpPage from "./pages/SignUpPage";
+import WelComePage from "./pages/WelComePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<WelComePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/inspire_list" element={<InspireListPage />} />
+      <Route path="/inspire_write" element={<InspireWritePage />} />
+      <Route path="/inspire_item" element={<InspireItemPage />} />
+      <Route path="/memo_list" element={<MemoListPage />} />
+      <Route path="/memo_write" element={<MemoWritePage />} />
+    </Routes>
   );
 }
 

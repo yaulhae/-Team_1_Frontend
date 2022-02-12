@@ -4,10 +4,12 @@ import React from "react";
 const InputBlock = styled.input`
   width: ${(props) => (props.width ? props.width : "")};
   font-size: ${(props) => (props.font_size ? props.font_size : "")};
+  margin: ${(props) => (props.margin ? props.margin : "")};
   padding: ${(props) => (props.padding ? props.padding : "")};
   border: 0px;
   border-bottom: 1px solid #c4c4c4;
   border-radius: 4px;
+  background: ${(props) => (props.bg ? props.bg : "")};
   color: ${(props) => (props.color ? props.color : "")};
   font-weight: ${(props) => (props.font_weight ? props.font_weight : "")};
   &:focus {
@@ -16,6 +18,7 @@ const InputBlock = styled.input`
   &::placeholder {
     color: ${(props) => (props.color ? props.color : "")};
     font-weight: ${(props) => (props.font_weight ? props.font_weight : "")};
+    font-size: ${(props) => (props.font_size ? props.font_size : "")};
   }
 `;
 
@@ -23,6 +26,7 @@ const Input = (props) => {
   const {
     id,
     width,
+    margin,
     padding,
     font_size,
     font_weight,
@@ -32,15 +36,19 @@ const Input = (props) => {
     onSubmit,
     is_label,
     value,
+    bg,
     color,
+    label_color,
   } = props;
 
   const styles = {
     width: width,
+    margin: margin,
     padding: padding,
     font_size: font_size,
     font_weight: font_weight,
     color: color,
+    bg: bg,
   };
 
   return (
@@ -51,7 +59,7 @@ const Input = (props) => {
           style={{
             width: "100%",
             display: "block",
-            color: "#C4C4C4",
+            color: label_color,
             fontSize: "14px",
           }}
         >
@@ -78,6 +86,7 @@ const Input = (props) => {
 Input.defaultProps = {
   id: null,
   width: "",
+  margin: "",
   padding: false,
   font_size: false,
   font_weight: "400",
@@ -88,6 +97,8 @@ Input.defaultProps = {
   onKeyPress: () => {},
   is_label: false,
   value: null,
+  bg: false,
   color: false,
+  label_color: false,
 };
 export default Input;

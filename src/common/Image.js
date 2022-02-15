@@ -15,6 +15,8 @@ const AspectOutter = styled.div`
   width: ${(props) => (props.rectangle_size ? props.rectangle_size : "")};
   min-width: 100px;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
 `;
 
 const AspectInner = styled.div`
@@ -24,6 +26,7 @@ const AspectInner = styled.div`
   background-image: url("${(props) => props.src}");
   background-size: cover;
   border-radius: 12px;
+  transition: 0.3s all;
 `;
 
 const ImageDefault = styled.div`
@@ -35,11 +38,12 @@ const ImageDefault = styled.div`
 `;
 
 const Image = (props) => {
-  const { shape, size, src, rectangle_size } = props;
+  const { shape, size, src, rectangle_size, transform } = props;
   const styles = {
     src: src,
     size: size,
     rectangle_size: rectangle_size,
+    transform: transform,
   };
 
   if (shape === "circle") {
@@ -65,6 +69,7 @@ Image.defaultProps = {
   size: "36px",
   rectangle_size: "36px",
   src: "https://ifh.cc/g/8lDrUd.jpg",
+  transform: "",
 };
 
 export default Image;

@@ -2,10 +2,39 @@ import styled from "styled-components";
 import React from "react";
 import { Button, Grid, Input, Text } from "../common";
 import Template from "../common/Template";
+import { useNavigate } from "react-router-dom";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
 
 const LoginPageBlock = styled.div``;
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [id, setId] = React.useState("");
+  const [pw, setPw] = React.useState("");
+
+  const changeId = (e) => {
+    setId(e.target.value);
+  };
+
+  const changePw = (e) => {
+    setPw(e.target.value);
+  };
+
+  const goBack = () => {
+    navigate("/");
+  };
+
+  const login = () => {
+    if (id === "" || pw === "") {
+      window.alert("아이디, 패스워드 모두 입력해주세요.");
+      return;
+    }
+    dispatch(userActions.loginDB(id, pw));
+    navigate("/inspire_list");
+  };
+
   return (
     <Template>
       <LoginPageBlock>
@@ -30,6 +59,8 @@ const LoginPage = () => {
               color="black"
               font_weight="bold"
               font_size="0.875rem"
+              onChange={changeId}
+              value={id}
             />
           </Grid>
           <Grid>
@@ -41,11 +72,34 @@ const LoginPage = () => {
               color="black"
               font_weight="bold"
               font_size="0.875rem"
+              type="password"
+              onChange={changePw}
+              value={pw}
             />
           </Grid>
         </Grid>
-        <Button bg="black" width="100%" border_radius="24px" font_weight="500">
+        <Button
+          bg="black"
+          width="100%"
+          border_radius="24px"
+          font_weight="500"
+          onClick={() => {
+            login();
+          }}
+        >
           로그인
+        </Button>
+        <Button
+          margin="0.6em 0 0 0"
+          bg="black"
+          width="100%"
+          border_radius="24px"
+          font_weight="500"
+          onClick={() => {
+            goBack();
+          }}
+        >
+          뒤로가기
         </Button>
       </LoginPageBlock>
     </Template>

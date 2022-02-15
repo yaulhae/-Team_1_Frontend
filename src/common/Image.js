@@ -25,6 +25,10 @@ const AspectInner = styled.div`
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // width: 100%;
+  // transform: scale(1.5);
   border-radius: 12px;
   transition: 0.3s all;
 `;

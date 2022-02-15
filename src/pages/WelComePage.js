@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { Button, Grid, Text, Image } from "../common";
 import Template from "../common/Template";
+import { useNavigate } from "react-router-dom";
 
 const WelComePageBlock = styled.div`
   .welcome_img_outer {
@@ -27,6 +28,7 @@ const WelComePageBlock = styled.div`
 `;
 
 const WelComePage = () => {
+  const navigate = useNavigate();
   return (
     <Template>
       <WelComePageBlock>
@@ -46,6 +48,7 @@ const WelComePage = () => {
           margin="3em 0 0.3em 0"
           border_radius="8px"
           font_weight="500"
+          onClick={() => navigate("/signup")}
         >
           회원가입
         </Button>

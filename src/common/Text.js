@@ -16,13 +16,14 @@ const TextBlock = styled.p`
 `;
 
 const Text = (props) => {
-  const { size, bold, color, margin, text_align, children } = props;
+  const { size, bold, color, margin, text_align, children, onClick } = props;
   const styles = {
     size: size,
     bold: bold,
     color: color,
     margin: margin,
     text_align: text_align,
+    onClick: onClick, // 현석이가 추가
   };
   return <TextBlock {...styles}>{children}</TextBlock>;
 };
@@ -34,6 +35,7 @@ Text.defaultProps = {
   bold: false,
   color: "#222831",
   margin: "",
+  onClick: () => {}, // 현석이가 추가
 };
 
 export default Text;

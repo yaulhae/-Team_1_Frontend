@@ -1,0 +1,110 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "signup": [
+    {
+      "user_id": "aaa",
+      "pw": "aaa",
+      "pw2": "aaa",
+      "nickname": "aaa",
+      "id": 2
+    },
+    {
+      "user_id": "ㅈㅈㅈ",
+      "pw": "www",
+      "pw2": "www",
+      "nickname": "ㅈㅈㅈ",
+      "id": 3
+    },
+    {
+      "user_id": "qkak",
+      "pw": "akak",
+      "pw2": "akak",
+      "nickname": "akak",
+      "id": 4
+    },
+    {
+      "user_id": "asd",
+      "pw": "asd",
+      "pw2": "asd",
+      "nickname": "asd",
+      "id": 5
+    },
+    {
+      "user_id": "asd",
+      "pw": "asdd",
+      "pw2": "asdd",
+      "nickname": "asd",
+      "id": 6
+    },
+    {
+      "user_id": "qqq",
+      "pw": "qqq",
+      "pw2": "qqq",
+      "nickname": "qqq",
+      "id": 7
+    },
+    {
+      "user_id": "asd",
+      "pw": "asd",
+      "pw2": "asd",
+      "nickname": "asd",
+      "id": 8
+    },
+    {
+      "user_id": "qwe",
+      "pw": "qqq",
+      "pw2": "qqqq",
+      "nickname": "qwe",
+      "id": 9
+    },
+    {
+      "user_id": "asd",
+      "pw": "asd",
+      "id": 10
+    },
+    {
+      "user_id": "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
+      "pw": "sss",
+      "id": 11
+    },
+    {
+      "user_id": "",
+      "pw": "",
+      "id": 12
+    },
+    {
+      "user_id": "",
+      "pw": "",
+      "id": 13
+    },
+    {
+      "user_id": "gustjr123",
+      "pw": "seok135712!",
+      "id": 14
+    },
+    {
+      "user_id": "qkrgustjr12",
+      "pw": "seok135712!",
+      "pw2": "seok135712!",
+      "nickname": "seok111",
+      "id": 15
+    },
+    {
+      "user_id": "qkrgustjr123",
+      "pw": "Seok135712!",
+      "pw2": "Seok135712!",
+      "nickname": "cachu",
+      "id": 16
+    }
+  ],
+  "login": {
+    "user_id": "ㅁㅁ",
+    "pw": "aa"
+  }
+}

@@ -2,11 +2,73 @@ import styled from "styled-components";
 import React from "react";
 import { Button, Grid, Input, Text } from "../common";
 import Template from "../common/Template";
-
+import { useNavigate } from "react-router-dom";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { usernameCheck, nicknameCheck, passwordCheck } from "../commons";
 
 const SignUpPageBlock = styled.div``;
 
 const SignUpPage = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const [id, setId] = React.useState("");
+  const [nickname, setNickname] = React.useState("");
+  const [pw, setPw] = React.useState("");
+  const [pw2, setPw2] = React.useState("");
+
+  const changeId = (e) => {
+    setId(e.target.value);
+  };
+
+  const changePw = (e) => {
+    setPw(e.target.value);
+  };
+
+  const changePw2 = (e) => {
+    setPw2(e.target.value);
+  };
+
+  const changeNick = (e) => {
+    setNickname(e.target.value);
+  };
+  const goBack = () => {
+    navigate("/");
+  };
+
+  const signup = () => {
+    // 유저 정보 입력란 공백 체크
+    if (id === "" || pw === "" || nickname === "" || pw2 === "") {
+      window.alert("아이디, 닉네임, 패스워드 모두 입력해주세요.");
+      return;
+    }
+    // 유저 아이디 체크
+    if (!usernameCheck(id)) {
+      window.alert("아이디: 영소문 / 숫자 혼합 3~12자 입력해주세요.  공백은 X");
+      return;
+    }
+    // 유저 닉네임 체크
+    if (!nicknameCheck(nickname)) {
+      window.alert("닉네임: 한글 / 영문 / 숫자 3~10자 입력해주세요.");
+      return;
+    }
+    // 유저 비밀번호 체크
+    if (!passwordCheck(pw)) {
+      window.alert(
+        "비밀번호: 영대소문 / 숫자 / 특수문자 혼합 4~12자 입력해주세요."
+      );
+      return;
+    }
+    // 유저 비밀번호 일치 체크
+    if (pw !== pw2) {
+      window.alert("패스워드가 일치하지 않습니다.");
+      return;
+    }
+    dispatch(userActions.signupDB(id, pw, pw2, nickname));
+    navigate("/login");
+  };
+
   return (
     <Template>
       <SignUpPageBlock>
@@ -31,6 +93,8 @@ const SignUpPage = () => {
               color="black"
               font_weight="bold"
               font_size="0.875rem"
+              onChange={changeId}
+              value={id}
             />
           </Grid>
           <Grid margin="0 0 1em 0">
@@ -42,6 +106,8 @@ const SignUpPage = () => {
               color="black"
               font_weight="bold"
               font_size="0.875rem"
+              onChange={changeNick}
+              value={nickname}
             />
           </Grid>
           <Grid margin="0 0 1em 0">
@@ -54,6 +120,8 @@ const SignUpPage = () => {
               font_weight="bold"
               font_size="0.875rem"
               type="password"
+              onChange={changePw}
+              value={pw}
             />
           </Grid>
           <Grid>
@@ -66,13 +134,34 @@ const SignUpPage = () => {
               font_weight="bold"
               font_size="0.875rem"
               type="password"
+              onChange={changePw2}
+              value={pw2}
             />
           </Grid>
         </Grid>
-        <Button bg="black" width="100%" border_radius="24px" font_weight="500">
+        <Button
+          bg="black"
+          width="100%"
+          border_radius="24px"
+          font_weight="500"
+          onClick={() => {
+            signup();
+          }}
+        >
           회원가입
         </Button>
-
+        <Button
+          margin="0.6em 0 0 0"
+          bg="black"
+          width="100%"
+          border_radius="24px"
+          font_weight="500"
+          onClick={() => {
+            goBack();
+          }}
+        >
+          뒤로가기
+        </Button>
       </SignUpPageBlock>
     </Template>
   );

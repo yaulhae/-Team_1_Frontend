@@ -3,14 +3,16 @@ import React from "react";
 import Template from "../common/Template";
 import { Grid, Text } from "../common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const MemoListPageBlock = styled.div`
   .memo_item {
-    border-bottom: 1px solid #707070;
-    margin-bottom: 2em;
+    background: #f2f2f2;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 1em;
     cursor: pointer;
   }
 `;
@@ -32,20 +34,28 @@ const MemoListPage = () => {
   ]);
   const navigate = useNavigate();
   return (
-    <Template bg="black">
+    <Template>
       <MemoListPageBlock>
         <Grid is_flex="flex" margin="0 0 2em 0">
-          <Text color="white" size="1.2rem" bold="500">
-            메모
+          <Text size="1.2rem" bold="600">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <FontAwesomeIcon
+                icon={faAngleLeft}
+                style={{ marginRight: "0.2em", width: "7px", height: "12px" }}
+                onClick={() => navigate(-1)}
+              />
+              메모
+            </div>
           </Text>
           <Link to="/memo_write">
             <FontAwesomeIcon
               icon={faPlus}
               style={{
-                color: "black",
-                background: "white",
-                padding: "0.5em 0.6em",
-                borderRadius: "10px",
+                color: "white",
+                padding: "0.4em 0.5em",
+                borderRadius: "20px",
+                width: "2rem",
+                background: "#1b9cfc",
               }}
             />
           </Link>
@@ -58,23 +68,13 @@ const MemoListPage = () => {
                   className="memo_item"
                   onClick={() => navigate("/memo_write")}
                 >
-                  <Text
-                    color="white"
-                    margin="0 0 0.4em 0"
-                    bold="500"
-                    size="0.75rem"
-                  >
+                  <Text margin="0 0 0.4em 0" bold="600" size="0.9rem">
                     {m.title}
                   </Text>
-                  <Text
-                    color="white"
-                    margin="0 0 3em 0"
-                    size="0.625rem"
-                    bold="100"
-                  >
+                  <Text margin="0 0 3em 0" size="0.8rem" bold="400">
                     {m.content}
                   </Text>
-                  <Text color="white" bold="100" size="0.50rem">
+                  <Text bold="300" size="0.80rem">
                     {m.insert_dt}
                   </Text>
                 </div>

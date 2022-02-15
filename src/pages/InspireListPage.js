@@ -5,6 +5,9 @@ import { Grid, Image, Text } from "../common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { setInspireFB } from "../module/inspire";
 
 const InspireListPageBlock = styled.div`
   color: white;
@@ -16,22 +19,20 @@ const InspireListPageBlock = styled.div`
 `;
 
 const InspireListPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  let inspire_list = [
-    { title: "디자인", img_url: "https://ifh.cc/g/OJewWn.jpg" },
-    { title: "갬성음악", img_url: "https://ifh.cc/g/W9YrVv.jpg" },
-    { title: "영화리뷰", img_url: "https://ifh.cc/g/wEQY8B.jpg" },
-    { title: "UX", img_url: "https://ifh.cc/g/gPvEuR.jpg" },
-    { title: "공예", img_url: "https://ifh.cc/g/cpnr9M.jpg" },
-    { title: "바우하우스", img_url: "https://ifh.cc/g/DvsLAG.jpg" },
-    { title: "카피라이터", img_url: "https://ifh.cc/g/Q9RUIy.jpg" },
-  ];
+  const inspire_list = useSelector(({ inspire }) => inspire.list);
+
+  useEffect(() => {
+    dispatch(setInspireFB());
+  }, []);
+
   return (
-    <Template bg="black">
+    <Template>
       <InspireListPageBlock>
-        <Grid margin="0 0 1.5em 0">
+        <Grid margin="0 0 2.4em 0">
           <Grid text_align="center">
-            <Text color="white" bold="600">
+            <Text color="black" bold="600">
               <Link to="/inspire_write">
                 <FontAwesomeIcon
                   icon={faPenToSquare}
@@ -43,20 +44,24 @@ const InspireListPage = () => {
           </Grid>
         </Grid>
         <Grid>
-          <div class="inspire_list" style={{ width: "100%" }}>
+          <div className="inspire_list" style={{ width: "100%" }}>
             {inspire_list.map((i, idx) => {
               return (
-                <Grid width="48%" onClick={() => navigate("/inspire_item")}>
+                <Grid
+                  key={idx}
+                  width="48%"
+                  onClick={() => navigate(`/inspire_list/${i._id}`)}
+                >
                   <Text
-                    color="#f9f9f9"
                     size="0.8rem"
-                    bold="400"
+                    bold="600"
                     margin="0 0 0.2em 0"
+                    text_align="center"
                   >
-                    {i.title}
+                    {i.name}
                   </Text>
                   <Image
-                    src={i.img_url}
+                    src={i.image_url}
                     shape="rectangle"
                     rectangle_size="100%"
                   />

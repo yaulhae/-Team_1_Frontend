@@ -18,8 +18,11 @@ function App() {
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/inspire_list" element={<InspireListPage />} />
       <Route path="/inspire_write" element={<InspireWritePage />} />
-      <Route path="/inspire_item" element={<InspireItemPage />} />
-      <Route path="/memo_list" element={<MemoListPage />} />
+      <Route path="/inspire_list/:id" element={<InspireItemPage />} />
+      <Route
+        path="/inspire_list/:inspire_id/memos_list/:memo_id"
+        element={<MemoListPage />}
+      />
       <Route path="/memo_write" element={<MemoWritePage />} />
     </Routes>
   );

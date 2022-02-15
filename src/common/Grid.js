@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 const GridBlock = styled.div`
+  position: relative;
   width: ${(props) => (props.width ? props.width : "")};
   margin: ${(props) => (props.margin ? props.margin : "")};
   padding: ${(props) => (props.padding ? props.padding : "")};

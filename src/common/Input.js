@@ -96,9 +96,8 @@ Input.defaultProps = {
   onSubmit: () => {},
   onKeyPress: () => {},
   is_label: false,
-  value: null,
   bg: false,
-  color: false,
+  color: "",
   label_color: false,
 };
 export default Input;

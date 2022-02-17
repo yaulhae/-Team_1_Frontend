@@ -5,11 +5,11 @@ import Swal from "sweetalert2";
 import "animate.css";
 import { history } from "../../App";
 
-
 // actions
 const LOG_IN = "LOG_IN";
 const GET_USER = "GET_USER";
 const LOG_OUT = "LOG_OUT";
+const SIGN_UP = "SIGN_UP";
 
 // action creators
 const logIn = createAction(LOG_IN, (user) => ({ user }));
@@ -31,33 +31,34 @@ const loginDB = (user_id, pw) => {
       pw: pw,
     };
     await api
-//       .post("api/login", data) //"api/login" 백엔드분들이랑 할때는 api필수
-//       .then((response) => {
-//         console.log(response);
-//         if (response.data.token) {
-//           localStorage.setItem("token", response.data.token);
-//           localStorage.setItem("user_id", response.data.user_id);
-//           dispatch(logIn(response.data.name));
-//           window.location.replace("/");
+      //       .post("api/login", data) //"api/login" 백엔드분들이랑 할때는 api필수
+      //       .then((response) => {
+      //         console.log(response);
+      //         if (response.data.token) {
+      //           localStorage.setItem("token", response.data.token);
+      //           localStorage.setItem("user_id", response.data.user_id);
+      //           dispatch(logIn(response.data.name));
+      //           window.location.replace("/");
 
-//           console.log("로그인이 되었습니다.");
-//         }
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         // window.alert('잘못된 아이디나 비밀번호 입니다. 다시 확인해주세요!(*⁰▿⁰*)')
-//         Swal.fire({
-//           icon: "warning",
-//           title: "잘못된 아이디나 비밀번호 입니다. 다시 확인해주세요!(*⁰▿⁰*)",
-//           showClass: {
-//             popup: "animate__animated animate__fadeInDown",
-//           },
-//           hideClass: {
-//             popup: "animate__animated animate__fadeOutUp",
-//           },
-//         });
+      //           console.log("로그인이 되었습니다.");
+      //         }
+      //       })
+      //       .catch((err) => {
+      //         console.log(err);
+      //         // window.alert('잘못된 아이디나 비밀번호 입니다. 다시 확인해주세요!(*⁰▿⁰*)')
+      //         Swal.fire({
+      //           icon: "warning",
+      //           title: "잘못된 아이디나 비밀번호 입니다. 다시 확인해주세요!(*⁰▿⁰*)",
+      //           showClass: {
+      //             popup: "animate__animated animate__fadeInDown",
+      //           },
+      //           hideClass: {
+      //             popup: "animate__animated animate__fadeOutUp",
+      //           },
+      //         });
       .post("/api/login", data) //"api/login" 백엔드분들이랑 할때는 api필수
       .then((response) => {
+        console.log(response.data);
         if (response.data.token) {
           api.defaults.headers.common[
             "Authorization"
@@ -85,20 +86,18 @@ const signupDB = (user_id, nickname, pw, pw2) => {
     await api
       .post("/api/signup", userInfo) //"/api/signup"
       .then(function (response) {
-        window.alert(
-          // "회원가입을 축하드립니다! 로그인 후 이용하실 수 있어요╰(*´︶`*)╯♡"
-          Swal.fire({
-            icon: "success",
-            title:
-              "회원가입을 축하드립니다! 로그인 후 이용하실 수 있어요╰(*´︶`*)╯♡",
-            showClass: {
-              popup: "animate__animated animate__fadeInDown",
-            },
-            hideClass: {
-              popup: "animate__animated animate__fadeOutUp",
-            },
-          })
-        );
+        Swal.fire({
+          icon: "success",
+          title:
+            "회원가입을 축하드립니다! 로그인 후 이용하실 수 있어요╰(*´︶`*)╯♡",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        localStorage.setItem("nickname", nickname);
         history.replace("/login");
       })
       .catch((err) => {

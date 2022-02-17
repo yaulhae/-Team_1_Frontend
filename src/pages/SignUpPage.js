@@ -117,6 +117,7 @@ const SignUpPage = () => {
       });
       return;
     }
+
     dispatch(userActions.signupDB(id, nickname, pw, pw2));
   };
 

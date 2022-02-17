@@ -38,7 +38,8 @@ const InspireItemPage = () => {
   const inspire_list = useSelector(({ inspire }) => inspire.list);
   const navigate = useNavigate();
   const note_title = useSelector(({ inspire }) => inspire.name);
-
+  console.log(user_id);
+  const nickname = localStorage.getItem("nickname");
   useEffect(() => {
     dispatch(getInspireByIdFB(inspire_id));
   }, []);
@@ -55,7 +56,7 @@ const InspireItemPage = () => {
       <InspireItemPageBlock>
         <Grid margin="0 0 2em 0">
           <Text size="1.5rem" bold="500">
-            <b className="user_name">{user_id}</b> 님의 <br />
+            <b className="user_name">{nickname}</b> 님의 <br />
             {note_title}
           </Text>
         </Grid>

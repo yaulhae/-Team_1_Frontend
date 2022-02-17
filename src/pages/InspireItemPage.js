@@ -34,20 +34,29 @@ const InspireItemPageBlock = styled.div`
 const InspireItemPage = () => {
   const inspire_id = useParams().id;
   const dispatch = useDispatch();
+  const user_id = useSelector(({ user }) => user.user);
   const inspire_list = useSelector(({ inspire }) => inspire.list);
   const navigate = useNavigate();
-  const name = useSelector(({ user }) => user.name);
+  const note_title = useSelector(({ inspire }) => inspire.name);
+
   useEffect(() => {
     dispatch(getInspireByIdFB(inspire_id));
   }, []);
+
+  const memos = [...Array(30).keys()].map((memo, idx) => {
+    const memo_id = `${user_id}_${inspire_id}_${idx}`;
+    return {
+      memo_id: memo_id,
+    };
+  });
 
   return (
     <Template>
       <InspireItemPageBlock>
         <Grid margin="0 0 2em 0">
           <Text size="1.5rem" bold="500">
-            <b className="user_name">${name}</b> 님의 <br />
-            디자인 노트
+            <b className="user_name">{user_id}</b> 님의 <br />
+            {note_title}
           </Text>
         </Grid>
         <Grid width="100%" margin="0 0 2.5em 0">
@@ -62,14 +71,12 @@ const InspireItemPage = () => {
             영감일지
           </Text>
           <div className="number_list">
-            {inspire_list[0].memos.map((n, idx) => {
+            {memos.map((n, idx) => {
               return (
                 <span
                   className="number_item"
                   key={idx}
-                  onClick={() =>
-                    navigate(`/inspire_list/${inspire_id}/memos_list/${n._id}`)
-                  }
+                  onClick={() => navigate(`/memo_item/${n.memo_id}`)}
                 >
                   {idx + 1}
                 </span>

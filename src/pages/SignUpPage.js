@@ -118,7 +118,6 @@ const SignUpPage = () => {
       return;
     }
     dispatch(userActions.signupDB(id, nickname, pw, pw2));
-    navigate("/login");
   };
 
   return (
@@ -202,6 +201,7 @@ const SignUpPage = () => {
         >
           회원가입
         </Button>
+
         <Button
           margin="0.6em 0 0 0"
           bg="black"

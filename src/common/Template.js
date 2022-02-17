@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 
 const TemplateBlock = styled.div`
+  position: relative;
   background: ${(props) => (props.bg ? props.bg : "white")};
   width: 375px;
   height: 667px;

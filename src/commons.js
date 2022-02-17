@@ -20,8 +20,7 @@ export const nicknameCheck = (userNick) => {
 // 길이: 4~12자 제한
 // 영대소문숫자특수문자 혼합
 export const passwordCheck = (userPwd) => {
-  let userPwdRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,12}$/;
+  let userPwdRegex = /^[a-zA-Z0-9]{4,30}$/;
 
   return userPwdRegex.test(userPwd);
 };

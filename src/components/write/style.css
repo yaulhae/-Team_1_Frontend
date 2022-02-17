@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Shrikhand&family=Song+Myung&display=swap");
+
+p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+}
+strong {
+  font-weight: 600;
+}
+em {
+  font-style: italic;
+}

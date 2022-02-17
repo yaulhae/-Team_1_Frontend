@@ -4,9 +4,17 @@ import Template from "../common/Template";
 import { Button, Grid, Image, Input, Text } from "../common";
 import { useDispatch, useSelector } from "react-redux";
 import { setPreview } from "../module/image";
-import { addInspire, addInspireFB, setInspireFB } from "../module/inspire";
+import {
+  addInspire,
+  addInspireFB,
+  changeName,
+  getInspireById,
+  getInspireByIdFB,
+  setInspireFB,
+  updateInspireFB,
+} from "../module/inspire";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { storage } from "../firebase";
 
 const InspireWritePageBlock = styled.div`
@@ -40,9 +48,11 @@ const InspireWritePageBlock = styled.div`
 `;
 
 const InspireWritePage = () => {
-  const [name, setName] = useState("");
+  const id = useParams().id;
+  const name = useSelector(({ inspire }) => inspire.name);
   const preview = useSelector(({ image }) => image.preview);
-
+  const inspire_list = useSelector(({ inspire }) => inspire.list);
+  const user_id = useSelector(({ user }) => user.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const imageRef = useRef(null);
@@ -66,29 +76,75 @@ const InspireWritePage = () => {
     return { memo: [] };
   });
 
+  const inspireUpdate = () => {
+    const image = imageRef.current.files[0];
+    if (image) {
+      const _upload = storage.ref(`images/${image.name}`).put(image);
+      _upload.then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((url) => {
+          const inspire = {
+            note_id: id,
+            user_id: user_id,
+            note_title: name,
+            image_url: url,
+          };
+          dispatch(updateInspireFB(id, inspire));
+        });
+      });
+    } else {
+      const inspire = {
+        note_id: id,
+        user_id: user_id,
+        note_title: name,
+      };
+      dispatch(updateInspireFB(inspire));
+    }
+  };
+
   const inspireSubmit = () => {
     const image = imageRef.current.files[0];
     const _upload = storage.ref(`images/${image.name}`).put(image);
-    _upload.then((snapshot) => {
-      snapshot.ref.getDownloadURL().then((url) => {
-        const inspire = {
-          name: name,
-          image_url: url,
-          memos: memos,
-        };
-        dispatch(addInspireFB(inspire));
-        navigate("/inspire_list");
+    if (image) {
+      _upload.then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((url) => {
+          const inspire = {
+            user_id: user_id,
+            note_title: name,
+            image_url: url,
+          };
+          dispatch(addInspireFB(inspire));
+        });
       });
-    });
+    } else {
+      const inspire = {
+        userId: user_id,
+        note_title: name,
+      };
+      dispatch(addInspireFB(inspire));
+    }
   };
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getInspireByIdFB(id));
+    } else {
+      dispatch(changeName(""));
+    }
+  }, []);
 
   return (
     <Template>
       <InspireWritePageBlock preview={preview}>
         <Grid>
-          <Text size="1.5rem" bold="600" margin="0 0 1em 0">
-            영감노트 작성
-          </Text>
+          {id ? (
+            <Text size="1.5rem" bold="600" margin="0 0 1em 0">
+              영감노트 수정
+            </Text>
+          ) : (
+            <Text size="1.5rem" bold="600" margin="0 0 1em 0">
+              영감노트 작성
+            </Text>
+          )}
         </Grid>
         <Grid>
           <Grid>
@@ -97,11 +153,19 @@ const InspireWritePage = () => {
             </Text>
           </Grid>
           <div className="image_container">
-            <Image
-              shape="rectangle"
-              rectangle_size="100%"
-              src={preview ? preview : "https://ifh.cc/g/026TZe.jpg"}
-            />
+            {id ? (
+              <Image
+                shape="rectangle"
+                rectangle_size="100%"
+                src={preview || inspire_list[0]?.image_url}
+              />
+            ) : (
+              <Image
+                shape="rectangle"
+                rectangle_size="100%"
+                src={preview ? preview : "https://ifh.cc/g/026TZe.jpg"}
+              />
+            )}
             <label className="inspire_img_label" htmlFor="inspire_img">
               파일을
               <br />
@@ -117,28 +181,56 @@ const InspireWritePage = () => {
           </div>
           <Grid>
             <Grid>
-              <Input
-                is_label="이름"
-                bg="transparent"
-                placeholder="영감 이름을 입력해주세요!"
-                padding="0.4em 0"
-                font_weight="400"
-                font_size="14px"
-                width="100%"
-                margin="0 0 0.8em 0"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <Button
-                bg="black"
-                color="white"
-                font_weight="500"
-                width="100%"
-                border_radius="8px"
-                onClick={inspireSubmit}
-              >
-                등록하기
-              </Button>
+              {id ? (
+                <Input
+                  is_label="이름"
+                  bg="transparent"
+                  placeholder="영감 이름을 입력해주세요!"
+                  padding="0.4em 0"
+                  font_weight="400"
+                  font_size="14px"
+                  width="100%"
+                  margin="0 0 0.8em 0"
+                  value={name}
+                  onChange={(e) => dispatch(changeName(e.target.value))}
+                />
+              ) : (
+                <Input
+                  is_label="이름"
+                  bg="transparent"
+                  placeholder="영감 이름을 입력해주세요!"
+                  padding="0.4em 0"
+                  font_weight="400"
+                  font_size="14px"
+                  width="100%"
+                  margin="0 0 0.8em 0"
+                  value={name}
+                  onChange={(e) => dispatch(changeName(e.target.value))}
+                />
+              )}
+              {id ? (
+                <Button
+                  bg="black"
+                  color="white"
+                  font_weight="500"
+                  width="100%"
+                  border_radius="8px"
+                  onClick={inspireUpdate}
+                >
+                  수정하기
+                </Button>
+              ) : (
+                <Button
+                  bg="black"
+                  color="white"
+                  font_weight="500"
+                  width="100%"
+                  border_radius="8px"
+                  onClick={inspireSubmit}
+                >
+                  등록하기
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>

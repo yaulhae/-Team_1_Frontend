@@ -42,7 +42,7 @@ const ImageDefault = styled.div`
 `;
 
 const Image = (props) => {
-  const { shape, size, src, rectangle_size, transform } = props;
+  const { shape, size, src, rectangle_size, transform, onClick } = props;
   const styles = {
     src: src,
     size: size,
@@ -56,7 +56,7 @@ const Image = (props) => {
 
   if (shape === "rectangle") {
     return (
-      <AspectOutter {...styles}>
+      <AspectOutter {...styles} onClick={onClick}>
         <AspectInner {...styles} />
       </AspectOutter>
     );
@@ -69,6 +69,7 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
+  onClick: () => {},
   shape: "circle",
   size: "36px",
   rectangle_size: "36px",

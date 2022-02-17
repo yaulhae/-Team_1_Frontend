@@ -32,7 +32,6 @@ const LoginPage = () => {
       return;
     }
     dispatch(userActions.loginDB(id, pw));
-    navigate("/inspire_list");
   };
 
   return (

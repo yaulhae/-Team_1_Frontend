@@ -65,8 +65,7 @@ const SignUpPage = () => {
       window.alert("패스워드가 일치하지 않습니다.");
       return;
     }
-    dispatch(userActions.signupDB(id, pw, pw2, nickname));
-    navigate("/login");
+    dispatch(userActions.signupDB(id, nickname, pw, pw2));
   };
 
   return (
@@ -150,6 +149,7 @@ const SignUpPage = () => {
         >
           회원가입
         </Button>
+
         <Button
           margin="0.6em 0 0 0"
           bg="black"

@@ -52,7 +52,13 @@ const WelComePage = () => {
         >
           회원가입
         </Button>
-        <Button bg="black" width="100%" border_radius="8px" font_weight="500">
+        <Button
+          bg="black"
+          width="100%"
+          border_radius="8px"
+          font_weight="500"
+          onClick={() => navigate("/login")}
+        >
           로그인
         </Button>
       </WelComePageBlock>

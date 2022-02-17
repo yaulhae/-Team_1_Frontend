@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import api from "../../api";
+import { history } from "../../App";
 
 // actions
 const LOG_IN = "LOG_IN";
@@ -19,23 +20,25 @@ const initialState = {
 
 // middleware actions
 const loginDB = (user_id, pw) => {
-  return async function (dispatch, getState, { history }) {
+  return async function (dispatch, getState) {
     const data = {
       user_id: user_id,
       pw: pw,
     };
     await api
-      .post("/login", data) //"api/login" 백엔드분들이랑 할때는 api필수
+      .post("/api/login", data) //"api/login" 백엔드분들이랑 할때는 api필수
       .then((response) => {
-        console.log(response);
-        // if (response.data.token) {
-        //   localStorage.setItem("token", response.data.token);
-        //   localStorage.setItem("name", response.data.name);
-        //   dispatch(logIn(response.data.name));
-        //   window.location.replace("/");
-
-        console.log("로그인이 되었습니다.");
-        // }
+        if (response.data.token) {
+          api.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${response.data.token}`;
+          localStorage.setItem("token", response.data.token);
+          //   localStorage.setItem("name", response.data.name);
+          dispatch(logIn(response.data.user_id));
+          //window.location.replace("/");
+          console.log("로그인이 되었습니다.");
+          history.replace("/inspire_list");
+        }
       });
     //   .catch((err) => {
     //     console.log(err);
@@ -43,22 +46,23 @@ const loginDB = (user_id, pw) => {
     //   });
   };
 };
-const signupDB = (user_id, pw, pw2, nickname) => {
-  return async function (dispatch, getState, { history }) {
+
+const signupDB = (user_id, nickname, pw, pw2) => {
+  return async function (dispatch, getState) {
     const userInfo = {
       user_id: user_id,
+      nickname: nickname,
       pw: pw,
       pw2: pw2,
-      nickname: nickname,
     };
     console.log("회원가입중");
     await api
-      .post("/signup", userInfo) //"/api/signup"
+      .post("/api/signup", userInfo) //"/api/signup"
       .then(function (response) {
-        console.log(response);
         window.alert(
           "회원가입을 축하드립니다! 로그인 후 이용하실 수 있어요╰(*´︶`*)╯♡"
         );
+        history.replace("/login");
       })
       .catch((err) => {
         console.log(err);

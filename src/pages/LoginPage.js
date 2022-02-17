@@ -5,6 +5,8 @@ import Template from "../common/Template";
 import { useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import "animate.css";
 
 const LoginPageBlock = styled.div``;
 
@@ -28,7 +30,17 @@ const LoginPage = () => {
 
   const login = () => {
     if (id === "" || pw === "") {
-      window.alert("아이디, 패스워드 모두 입력해주세요.");
+      // window.alert("아이디, 패스워드 모두 입력해주세요.");
+      Swal.fire({
+        icon: "question",
+        title: "아이디, 패스워드 모두 입력해주세요.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     dispatch(userActions.loginDB(id, pw));

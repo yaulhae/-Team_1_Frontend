@@ -36,6 +36,7 @@ const InspireItemPage = () => {
   const dispatch = useDispatch();
   const inspire_list = useSelector(({ inspire }) => inspire.list);
   const navigate = useNavigate();
+  const name = useSelector(({ user }) => user.name);
   useEffect(() => {
     dispatch(getInspireByIdFB(inspire_id));
   }, []);
@@ -45,7 +46,7 @@ const InspireItemPage = () => {
       <InspireItemPageBlock>
         <Grid margin="0 0 2em 0">
           <Text size="1.5rem" bold="500">
-            <b className="user_name">야울해</b> 님의 <br />
+            <b className="user_name">${name}</b> 님의 <br />
             디자인 노트
           </Text>
         </Grid>

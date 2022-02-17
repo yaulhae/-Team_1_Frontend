@@ -27,6 +27,10 @@ body {
   height: 100%;
   background: rgb(196, 196, 196);
   font-family: "Noto Sans KR", sans-serif;
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
 img,
 picture,

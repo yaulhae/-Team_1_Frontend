@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { usernameCheck, nicknameCheck, passwordCheck } from "../commons";
+import Swal from "sweetalert2";
+import "animate.css";
 
 const SignUpPageBlock = styled.div``;
 
@@ -40,29 +42,79 @@ const SignUpPage = () => {
   const signup = () => {
     // 유저 정보 입력란 공백 체크
     if (id === "" || pw === "" || nickname === "" || pw2 === "") {
-      window.alert("아이디, 닉네임, 패스워드 모두 입력해주세요.");
+      // window.alert("아이디, 닉네임, 패스워드 모두 입력해주세요.");
+      Swal.fire({
+        icon: "question",
+        title: "아이디, 닉네임, 패스워드 모두 입력해주세요.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     // 유저 아이디 체크
     if (!usernameCheck(id)) {
-      window.alert("아이디: 영소문 / 숫자 혼합 3~12자 입력해주세요.  공백은 X");
+      // window.alert("아이디: 영소문 / 숫자 혼합 3~12자 입력해주세요.  공백은 X");
+      Swal.fire({
+        icon: "warning",
+        title: "아이디: 영소문 / 숫자 혼합 3~12자 입력해주세요.  공백은 X",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     // 유저 닉네임 체크
     if (!nicknameCheck(nickname)) {
-      window.alert("닉네임: 한글 / 영문 / 숫자 3~10자 입력해주세요.");
+      // window.alert("닉네임: 한글 / 영문 / 숫자 3~10자 입력해주세요.");
+      Swal.fire({
+        icon: "warning",
+        title: "닉네임: 한글 / 영문 / 숫자 3~10자 입력해주세요.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     // 유저 비밀번호 체크
     if (!passwordCheck(pw)) {
-      window.alert(
-        "비밀번호: 영대소문 / 숫자 / 특수문자 혼합 4~12자 입력해주세요."
-      );
+      // window.alert(
+      //   "비밀번호: 영대소문 / 숫자 / 특수문자 혼합 4~12자 입력해주세요."
+      // );
+      Swal.fire({
+        icon: "warning",
+        title: "비밀번호: 영대소문 / 숫자 / 특수문자 혼합 4~12자 입력해주세요.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     // 유저 비밀번호 일치 체크
     if (pw !== pw2) {
-      window.alert("패스워드가 일치하지 않습니다.");
+      // window.alert("패스워드가 일치하지 않습니다.");
+      Swal.fire({
+        icon: "error",
+        title: "패스워드가 일치하지 않습니다.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
       return;
     }
     dispatch(userActions.signupDB(id, nickname, pw, pw2));

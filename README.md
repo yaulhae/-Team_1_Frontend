@@ -28,7 +28,7 @@ Web Site :
 ### Back-end
 <p><a href="https://github.com/hyunjikeem" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=%EA%B9%80%ED%98%84%EC%A7%80&color=08CE5D&style=for-the-badge"/></a></p>
    <p><a href="https://github.com/jableee" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=%EA%B9%80%EC%A7%80%EC%84%B1&color=08CE5D&style=for-the-badge"/></a></p>
-   <p><a href="https://github.com/nklee6300" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=이노규&color=08CE5D&style=for-the-badge"/></a></p>
+   <p><a href="https://github.com/nklee6300" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=%EC%9D%B4%EB%85%B8%EA%B7%9C&color=08CE5D&style=for-the-badge"/></a></p>
 
 </br>
 

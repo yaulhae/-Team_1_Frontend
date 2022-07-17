@@ -22,7 +22,7 @@ Web Site :
 ### Front-end
 
    <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=%EB%B0%95%ED%98%84%EC%84%9D&color=61dafb&style=for-the-badge"/></a></p>
-   <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=이성운&color=61dafb&style=for-the-badge" /></a></p>
+   <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="[https://img.shields.io/static/v1?label=React&message=이성운&color=61dafb&style=for-the-badge](https://img.shields.io/static/v1?label=React&message=이성운&color=61dafb&style=for-the-badge)"/></a></p>
    
   
 ### Back-end

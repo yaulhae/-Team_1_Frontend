@@ -10,8 +10,8 @@ Web Site :
 
 ## 🎥 시연 영상
 
-[![Hnet-image]()<br>
-이미지를 클릭하시면 유튜브 영상으로 이동됩니다.
+[기획자의 일상](https://www.youtube.com/watch?v=wNeTCqRpgZA&t=51s)
+위 제목을 클릭하시면 유튜브 영상으로 이동됩니다.
 
 ## 🧑🏼‍💻 개발기간 및 팀원소개
 
@@ -21,14 +21,14 @@ Web Site :
 
 ### Front-end
 
-   <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=박현석&color=61dafb&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/yaulhae" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=이성운&color=61dafb&style=for-the-badge&>"/></a></p>
+   <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=박현석&color=61dafb&style=for-the-badge" /></a></p>
+   <p><a href="https://github.com/ssseok" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=이성운&color=61dafb&style=for-the-badge" /></a></p>
    
   
 ### Back-end
-<p><a href="https://github.com/hyunjikeem" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김현지&color=08CE5D&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/jableee" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김지성&color=08CE5D&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/nklee6300" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=이노규&color=08CE5D&style=for-the-badge&>"/></a></p>
+<p><a href="https://github.com/hyunjikeem" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김현지&color=08CE5D&style=for-the-badge" /></a></p>
+   <p><a href="https://github.com/jableee" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김지성&color=08CE5D&style=for-the-badge" /></a></p>
+   <p><a href="https://github.com/nklee6300" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=이노규&color=08CE5D&style=for-the-badge" /></a></p>
 
 </br>
 
